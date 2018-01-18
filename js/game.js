@@ -68,6 +68,7 @@ let trump = {
             don[i].y += don[i].speed;
             if (don[i].y > 500) {
                 don.splice(i, 1);
+                score++;
             }
         }
     }
@@ -90,6 +91,7 @@ function init() {
         delete keysDown[e.keyCode];
     }, false);
     c.addEventListener("mousedown", (e) => {
+        console.log(e);
         if (
             e.pageX >= PLAY_AGAIN.x &&
             e.pageY >= PLAY_AGAIN.y &&
@@ -126,7 +128,7 @@ function gameLoop() {
         if ((Math.floor(Math.random() * (12)) + 1) == 1) {
             don.push(new Donald());
         }
-        score += 1;
+        //score += 1;
         trump.drop();
         obama.detectHits();
         let now = performance.now();
@@ -134,7 +136,7 @@ function gameLoop() {
         obama.move(delta / 1000);
         then = now;
         ctx.fillStyle = "black";
-        ctx.fillText("Score:" + score, 5, 10);
+        ctx.fillText("Donalds dodged: " + score, 5, 10);
         ctx.fillText(fpsCounter() + " FPS", 465, 10);
     } else {
         c.width = c.width;
@@ -144,7 +146,7 @@ function gameLoop() {
         
         ctx.fillStyle = "black";
         ctx.font = "36px sans-serif";
-        ctx.fillText("Score: " + score, 155, 240);
+        ctx.fillText("Donalds dodged: " + score, 100, 240);
         
         ctx.strokeRect(PLAY_AGAIN.x, PLAY_AGAIN.y, PLAY_AGAIN.width, PLAY_AGAIN.height);
         
