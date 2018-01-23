@@ -12,9 +12,7 @@
         height: 20,
         onclick: function() {
             if (lost) {
-                // init(); // doesn't work? donalds move faster each time
                 game();
-                // this is a garbage workaround
             }
         }
     };
