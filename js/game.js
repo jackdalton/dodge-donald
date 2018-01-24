@@ -127,7 +127,6 @@
             if ((Math.floor(Math.random() * (12)) + 1) == 1) {
                 don.push(new Donald());
             }
-            //score += 1;
             trump.drop();
             obama.detectHits();
             let now = performance.now();
