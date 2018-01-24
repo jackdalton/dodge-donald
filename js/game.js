@@ -90,7 +90,6 @@
             delete keysDown[e.keyCode];
         }, false);
         c.addEventListener("mousedown", (e) => {
-            console.log(e);
             if (
                 e.pageX >= PLAY_AGAIN.x &&
                 e.pageY >= PLAY_AGAIN.y &&
@@ -136,7 +135,12 @@
             ctx.fillStyle = "black";
             ctx.fillText("Donalds dodged: " + score, 5, 10);
             ctx.fillText(fpsCounter() + " FPS", 465, 10);
+            window.requestAnimationFrame(gameLoop);
         } else {
+            if (localStorage.highScore == undefined)
+                localStorage.highScore = score;
+            else if (localStorage.highScore < score)
+                localStorage.highScore = score;
             c.width = c.width;
             ctx.fillStyle = "red";
             ctx.font = "40px sans-serif";
@@ -151,8 +155,9 @@
             ctx.fillStyle = "black";
             ctx.font = "12px sans-serif";
             ctx.fillText("Play again", PLAY_AGAIN.x + 2, PLAY_AGAIN.y + 15);
+
+            ctx.fillText("High score: " + localStorage.highScore, 0, 10);
         }
-        window.requestAnimationFrame(gameLoop);
     }
 
     init();
